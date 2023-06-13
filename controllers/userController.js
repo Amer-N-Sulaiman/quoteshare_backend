@@ -3,7 +3,7 @@ const login = (req, res)=>{
 }
 
 const signup = (req, res)=>{
-    res.json('signup')
+    const {username, password} = req.body
 }
 
 module.exports = {login, signup}
