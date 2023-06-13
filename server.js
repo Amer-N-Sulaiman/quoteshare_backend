@@ -6,13 +6,16 @@ const cors = require('cors')
 
 const app = express()
 
-// routes
-app.use('/auth', userRoutes)
 
 app.use(cors())
 
+
 app.use(express.json())
 
+
+
+// routes
+app.use('/auth', userRoutes)
 
 mongoose.connect(process.env.MONGO_URI)
     .then(()=>{

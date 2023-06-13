@@ -41,7 +41,7 @@ userSchema.statics.signup = async function (full_name, username, password) {
 
 }
 
-userSchema.statics.login = async (username, password) => {
+userSchema.statics.login = async function (username, password) {
 
     if (!username || !password) {
         throw Error('Username and password must be filled')
@@ -52,7 +52,7 @@ userSchema.statics.login = async (username, password) => {
         throw Error('This username does not exist')
     }
 
-    const match = bcrypt.match(password, user.password)
+    const match = await bcrypt.compare(password, user.password)
     if (!match) {
         throw Error('Wrong password')
     }
