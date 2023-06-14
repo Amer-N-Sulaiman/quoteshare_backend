@@ -11,4 +11,9 @@ const addQuote = async (req, res) => {
     return res.status(200).json({quote: createdQuote})
 }
 
-module.exports = {addQuote}
+const fetchQuotes = async (req, res) => {
+    const quotes = await Quote.find({}).limit(10)
+    return res.status(200).json({quotes})
+}
+
+module.exports = {addQuote, fetchQuotes}
