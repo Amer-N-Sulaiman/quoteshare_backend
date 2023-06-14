@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 const userRoutes = require('./routes/userRoutes')
 require('dotenv').config()
 const cors = require('cors')
+const { addQuote } = require('./controllers/quoteController')
 
 const app = express()
 
@@ -16,6 +17,7 @@ app.use(express.json())
 
 // routes
 app.use('/auth', userRoutes)
+app.use('/quote', addQuote)
 
 mongoose.connect(process.env.MONGO_URI)
     .then(()=>{
