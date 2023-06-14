@@ -12,7 +12,7 @@ const addQuote = async (req, res) => {
 }
 
 const fetchQuotes = async (req, res) => {
-    const quotes = await Quote.find({}).limit(10)
+    const quotes = await Quote.find({ }).limit(10)
     return res.status(200).json({quotes})
 }
 
