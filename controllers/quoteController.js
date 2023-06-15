@@ -28,6 +28,17 @@ const addLike = async (req, res) => {
     return res.status(200).json({quote})
 }
 
+const removeLike = async (req, res) => {
+    const {quoteId} = req.body
+    const username = req.user.username
+    const quote = await Quote.findOne({_id: quoteId})
+    if (!quote.likes.includes(username)){
+        return res.status(400).json({error: "Username has't liked the quote"})
+    }
+    const index = quote.likes.indexOf(username)
+    quote.likes.splice(index, 1)
+    quote.save()
+    return res.status(200).json({quote})
+}
 
-
-module.exports = {addQuote, fetchQuotes, addLike}
+module.exports = {addQuote, fetchQuotes, addLike, removeLike}

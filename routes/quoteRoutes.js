@@ -1,5 +1,5 @@
 const express = require('express')
-const {addQuote, fetchQuotes, addLike} = require('../controllers/quoteController')
+const {addQuote, fetchQuotes, addLike, removeLike} = require('../controllers/quoteController')
 const requireAuth = require('../middleware/requireAuth')
 
 const router = express.Router()
@@ -11,5 +11,7 @@ router.post('/add', addQuote)
 router.get('/fetchAll', fetchQuotes)
 
 router.post('/addLike', addLike)
+
+router.post('/removeLike', removeLike)
 
 module.exports = router
