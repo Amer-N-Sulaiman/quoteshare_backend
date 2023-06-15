@@ -33,7 +33,7 @@ const removeLike = async (req, res) => {
     const username = req.user.username
     const quote = await Quote.findOne({_id: quoteId})
     if (!quote.likes.includes(username)){
-        return res.status(400).json({error: "Username has't liked the quote"})
+        return res.status(400).json({error: "Username hasn't liked the quote"})
     }
     const index = quote.likes.indexOf(username)
     quote.likes.splice(index, 1)
