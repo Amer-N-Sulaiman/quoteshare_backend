@@ -16,4 +16,18 @@ const fetchQuotes = async (req, res) => {
     return res.status(200).json({quotes})
 }
 
-module.exports = {addQuote, fetchQuotes}
+const addLike = async (req, res) => {
+    const {quoteId} = req.body
+    const username = req.user.username
+    const quote = await Quote.findOne({_id: quoteId})
+    if (quote.likes.includes(username)){
+        return res.status(400).json({error: "Username already liked the quote"})
+    }
+    quote.likes.push(username)
+    quote.save()
+    return res.status(200).json({quote})
+}
+
+
+
+module.exports = {addQuote, fetchQuotes, addLike}

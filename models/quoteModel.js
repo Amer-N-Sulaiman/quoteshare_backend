@@ -12,6 +12,10 @@ const quoteSchema = new mongoose.Schema({
     body: {
         type: String,
         required: true
+    },
+    likes: {
+        type: [String],
+        default: []
     }
 }, {timestamps: true})
 
