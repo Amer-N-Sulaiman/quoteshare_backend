@@ -12,7 +12,8 @@ const addQuote = async (req, res) => {
 }
 
 const fetchQuotes = async (req, res) => {
-    const quotes = await Quote.find({ }).limit(10)
+    const {limit, skip} = req.body
+    const quotes = await Quote.find({ }).skip(skip).limit(limit)
     return res.status(200).json({quotes})
 }
 

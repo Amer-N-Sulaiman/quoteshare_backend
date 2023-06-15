@@ -8,7 +8,7 @@ router.use(requireAuth)
 
 router.post('/add', addQuote)
 
-router.get('/fetchAll', fetchQuotes)
+router.post('/fetchAll', fetchQuotes)
 
 router.post('/addLike', addLike)
 
