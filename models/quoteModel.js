@@ -5,6 +5,14 @@ const quoteSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    username: {
+        type: String,
+        required: true
+    },
+    full_name: {
+        type: String,
+        required: true
+    },
     author: {
         type: String,
         required: true,

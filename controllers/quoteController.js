@@ -1,4 +1,5 @@
 const Quote = require('../models/quoteModel')
+const User = require('../models/userModel')
 
 const addQuote = async (req, res) => {
     const {author, quote} = req.body
@@ -7,9 +8,29 @@ const addQuote = async (req, res) => {
     if (!userId || !author || !quote){
         return res.status(400).json({error: "All fields must be filled"})
     }
-    const createdQuote = await Quote.create({userId, author, body: quote})
+    const user = User.find({userId})
+
+    const createdQuote = await Quote.create({userId, username: user.username, full_name: user.full_name, author, body: quote})
     return res.status(200).json({quote: createdQuote})
 }
+
+// const aU = async (req, res) => {
+//     function getRandomInt(min, max) {
+//         min = Math.ceil(min);
+//         max = Math.floor(max);
+//         return Math.floor(Math.random() * (max - min + 1)) + min;
+//     }
+
+//     const quotes = await Quote.find({})
+//     const users = await User.find({})
+//     ;(await quotes).forEach((element, index)=>{
+//         const rand = getRandomInt(0, users.length)
+//         const randUser = users[rand]
+//         element.username = randUser.username
+//         element.full_name = randUser.full_name
+//         element.save()
+//     })
+// }
 
 const fetchQuotes = async (req, res) => {
     const {limit, skip} = req.body
