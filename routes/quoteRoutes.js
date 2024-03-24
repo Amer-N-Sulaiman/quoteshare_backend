@@ -4,11 +4,11 @@ const requireAuth = require('../middleware/requireAuth')
 
 const router = express.Router()
 
+router.post('/fetchAll', fetchQuotes)
+
 router.use(requireAuth)
 
 router.post('/add', addQuote)
-
-router.post('/fetchAll', fetchQuotes)
 
 router.post('/addLike', addLike)
 
